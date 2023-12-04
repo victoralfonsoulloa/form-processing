@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+     <title>Form Processing</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/forms.css">
+ </head>
+ <body>
+     <header>
+     <h1 class="page-header">Form Processing</h1>
+        <nav class="topnav" id="myTopnav">
+            <a href="index.html" class="active">Home</a>
+            <a href="#">Link</a>
+            <a href="#">Link</a>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+        </nav>
+     </header>
+     
+   <main class="wrapper">
+ 
+    <h2 class="subheader">An HTML/CSS/JS example by NAME HERE</h2>
+    <div id="output">
+      <p>The following is a demonstration of a form that can be filled out and when data is entered, the data can be seen on the page.</p>
+      <p>Any form fields that have names with an underscore between significant words, such as <b>First_Name</b> 
+        will be split into separate words, for example <b>First Name</b> upon submission.</p>  
+    <form method="get" action="" class="main-form">
+      <div>
+        <label for="FirstName">First Name</label><br>
+        <input type="text" name="First_Name" id="FirstName" placeholder="First Name" required autofocus>
+      </div>
+      <div>
+        <input type="submit">
+      </div>
+    </form>
+  </div>
+    <footer>
+      <p><small>&copy; 2021-<span id="this-year"></span> by 
+          YOUR NAME HERE, All Rights Reserved ~ 
+          <a id="html-checker" href="#" target="_blank">Check HTML</a> ~ 
+          <a id="css-checker" href="#" target="_blank">Check CSS</a></small>
+     </p>
+    </footer>
+  </main>
+  <script src="js/main.js"></script> 
+  <script>
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    if(queryString.length > 0){//data submitted
+      let myOutput = `<div id="container">`;
+
+      urlParams.forEach(function(value,key){
+
+        key = key.split("_").join(" ");
+        myOutput += `<p>${key}: ${value}</p>`;
+      });
+      myOutput += `<p><a href="index.html">CLEAR</a></p>`; 
+      myOutput += `</div>`;
+      document.querySelector("#output").innerHTML = myOutput;
+    }
+  </script>  
+ </body>
+</html>
